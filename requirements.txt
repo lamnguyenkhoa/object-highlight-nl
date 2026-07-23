@@ -1,0 +1,7 @@
+transformers>=4.56
+accelerate
+pillow
+opencv-python-headless
+numpy
+scipy
+huggingface_hub
