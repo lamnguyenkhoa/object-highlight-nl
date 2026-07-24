@@ -9,8 +9,9 @@ services:
     volumes:
       - models:/app/model
       # one-time `huggingface-cli login` on the host writes a cached token here;
-      # mount it read-only so the container can reuse it without HF_TOKEN.
-      - ${USERPROFILE}/.cache/huggingface:/root/.cache/huggingface:ro
+      # mount just the token file (read-only) so the rest of the cache dir
+      # stays writable in the container for the hub's own scratch/xet files.
+      - ${USERPROFILE}/.cache/huggingface/token:/root/.cache/huggingface/token:ro
     deploy:
       resources:
         reservations:
