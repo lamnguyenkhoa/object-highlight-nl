@@ -2,8 +2,10 @@ services:
   highlight:
     build: .
     image: object-highlight-nl:latest
+    ports:
+      - "7860:7860"
     volumes:
-      - ./data:/app/data
+      - models:/app/model
     deploy:
       resources:
         reservations:
@@ -11,3 +13,6 @@ services:
             - driver: nvidia
               count: 1
               capabilities: [gpu]
+
+volumes:
+  models:

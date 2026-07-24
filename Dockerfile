@@ -23,9 +23,9 @@ RUN if [ "$TARGETARCH" = "arm64" ]; then \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY highlight.py .
-COPY model/ ./model/
+COPY highlight.py highlight-sam3.py app.py draw_utils.py download_models.py entrypoint.sh ./
+RUN chmod +x entrypoint.sh
 
-ENV HF_HUB_OFFLINE=1
+EXPOSE 7860
 
-ENTRYPOINT ["python", "highlight.py"]
+ENTRYPOINT ["./entrypoint.sh"]

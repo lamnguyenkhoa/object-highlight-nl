@@ -6,6 +6,7 @@ from huggingface_hub import snapshot_download
 MODELS = {
     "grounding-dino-base": "IDEA-Research/grounding-dino-base",
     "sam2.1-hiera-large": "facebook/sam2.1-hiera-large",
+    "sam3": "facebook/sam3",
 }
 
 for local_name, repo_id in MODELS.items():
