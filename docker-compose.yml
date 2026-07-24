@@ -4,8 +4,13 @@ services:
     image: object-highlight-nl:latest
     ports:
       - "7860:7860"
+    environment:
+      - HF_TOKEN=${HF_TOKEN:-}
     volumes:
       - models:/app/model
+      # one-time `huggingface-cli login` on the host writes a cached token here;
+      # mount it read-only so the container can reuse it without HF_TOKEN.
+      - ${USERPROFILE}/.cache/huggingface:/root/.cache/huggingface:ro
     deploy:
       resources:
         reservations:
