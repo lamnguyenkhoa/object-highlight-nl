@@ -15,9 +15,9 @@ RUN pip install --no-cache-dir --upgrade pip
 # build won't run on GPU; fall back to a plain `pip install torch` (CPU-only) instead.
 ARG TARGETARCH
 RUN if [ "$TARGETARCH" = "arm64" ]; then \
-        pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cu130; \
+        pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cu130; \
     else \
-        pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cu128; \
+        pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cu128; \
     fi
 
 COPY requirements.txt .
