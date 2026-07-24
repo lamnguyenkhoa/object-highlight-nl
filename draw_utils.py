@@ -1,6 +1,18 @@
 # draw_utils.py
+import colorsys
 import cv2
 import numpy as np
+
+
+def auto_color(index):
+    """Deterministic, visually distinct RGB color for a given object index."""
+    hue = (index * 0.618033988749895) % 1.0
+    r, g, b = colorsys.hsv_to_rgb(hue, 0.65, 0.95)
+    return int(r * 255), int(g * 255), int(b * 255)
+
+
+def auto_color_hex(index):
+    return "#%02x%02x%02x" % auto_color(index)
 
 
 def mask_to_box(mask):
