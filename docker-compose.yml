@@ -2,6 +2,7 @@ services:
   highlight:
     build: .
     image: object-highlight-nl:latest
+    container_name: object-highlight-nl
     ports:
       - "7860:7860"
     environment:
